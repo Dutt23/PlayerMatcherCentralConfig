@@ -25,6 +25,6 @@
 	</parent>
 
 	<modules>
-		<module>Server</module>
+		<module>PlayerMatcher</module>
 	</modules>
 </project>
