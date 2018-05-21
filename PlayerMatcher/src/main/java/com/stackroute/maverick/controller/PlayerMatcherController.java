@@ -1,5 +1,12 @@
 package com.stackroute.maverick.controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -60,7 +67,7 @@ public class PlayerMatcherController {
 		Map<Integer, Set<Integer>> gameQueue;
 		// This is where the gameId will be stored
 		gameQueue = addPlayerService.addPlayertoQueue(gameId, userId);
-//		System.out.println("This is controller" + gameQueue);
+		// System.out.println("This is controller" + gameQueue);
 
 		for (int key : gameQueue.keySet()) {
 
@@ -73,9 +80,29 @@ public class PlayerMatcherController {
 			}
 
 		}
-		
 
 		return null;
+
+	}
+
+	public void writeFile() throws IOException, ClassNotFoundException {
+		HashMap<String, Object> fileObj = new HashMap<String, Object>();
+
+		ArrayList<String> cols = new ArrayList<String>();
+		cols.add("a");
+		cols.add("b");
+		cols.add("c");
+		fileObj.put("mylist", cols);
+
+		{
+
+			File file = new File("temp1.txt");
+			BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt",true));
+			// ObjectOutputStream s = new ObjectOutputStream(f);
+			writer.append(fileObj.toString());
+			writer.close();
+
+		}
 
 	}
 

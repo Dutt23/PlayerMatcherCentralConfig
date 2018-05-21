@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -185,6 +186,18 @@ public class PlayerMatchedControllerUnitTest {
 		System.out.println("This is" + actualPlayers);
 		assertEquals(expectedPlayers, actualPlayers);
 
+	}
+	
+	/**
+	 * Test case for writing into a file
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	@Test
+	public void testWritinginFIle() throws ClassNotFoundException, IOException
+	{
+		playerMatcherController.writeFile();
+		
 	}
 
 }
