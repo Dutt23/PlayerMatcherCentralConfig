@@ -1,10 +1,15 @@
 package com.stackroute.maverick.controller;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,25 +90,87 @@ public class PlayerMatcherController {
 
 	}
 
+	
 	public void writeFile() throws IOException, ClassNotFoundException {
-		HashMap<String, Object> fileObj = new HashMap<String, Object>();
+		Set<String> playerSet = new HashSet<String>();
+		Map<Integer, Set<String>> gameQueue = new HashMap<Integer, Set<String>>();
+		playerSet.add("a");
+		playerSet.add("b");
+		playerSet.add("c");
+		gameQueue.put(1, playerSet);
+		System.out.println(gameQueue);
 
-		ArrayList<String> cols = new ArrayList<String>();
-		cols.add("a");
-		cols.add("b");
-		cols.add("c");
-		fileObj.put("mylist", cols);
+		BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt", true));
+		writer.append(gameQueue.toString());
+		writer.append("\n");
+		writer.close();
 
-		{
+		// ObjectOutputStream oos = new ObjectOutputStream(new
+		// FileOutputStream("file.txt",true));
+		// oos.writeObject(gameQueue.toString());
+		//
+		// oos.flush();
+		// oos.close();
+		System.out.println("File written");
 
-			File file = new File("temp1.txt");
-			BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt",true));
-			// ObjectOutputStream s = new ObjectOutputStream(f);
-			writer.append(fileObj.toString());
-			writer.close();
-
+		
+//		 Reading a file and putting it into a map
+		String filePath = "file.txt";
+		Set<String> returnedPlayerSet = new HashSet<String>();
+		Map<String, Set<String>> returnedGameQueue = new HashMap<String, Set<String>>();
+		String line;
+		BufferedReader reader = new BufferedReader(new FileReader(filePath));
+		while ((line = reader.readLine()) != null) {
+			String[] parts = line.split("=");
+			if (parts.length >= 2) {
+				String key = parts[0].split("\\{")[1];
+				returnedPlayerSet.add(parts[1].split("}")[0].split("]")[0].split("\\[")[1]);
+				System.out.println("This is key " + key);
+				System.out.println(parts[1]);
+				returnedGameQueue.put(key, returnedPlayerSet);
+			} else {
+				System.out.println("ignoring line: " + line);
+			}
 		}
 
+		for (String key : returnedGameQueue.keySet()) {
+			System.out.println(key + "=" + returnedGameQueue.get(key));
+			System.out.println(returnedGameQueue);
+		}
+		reader.close();
+
+		// ObjectInputStream ois = new ObjectInputStream(new
+		// FileInputStream("file.txt"));
+		// HashMap<Integer, Set<String>> returnedMap = (HashMap<Integer,
+		// Set<String>>)ois.readObject();
+		//
+		// Use returned object.
+		// System.out.println(returnedMap);
+		// ois.close();
+
+		// BufferedWriter writer = new BufferedWriter(new FileWriter("file.txt",true));
+		// writer.append(fileObj.toString());
+		// writer.close();
+		// BufferedReader r = new BufferedReader( new FileReader( "file.txt" ) );
+		// String s = "", line = null;
+		// while ((line = r.readLine()) != null) {
+		//
+		// s += line;
+		//
+		// }
+		// System.out.print("Reading file " + s);
+
 	}
+
+	// public void readFile() throws IOException {
+	//
+	//
+	// BufferedReader r = new BufferedReader( new FileReader( "file.txt" ) );
+	// String s = "", line = null;
+	// while ((line = r.readLine()) != null) {
+	// s += line;
+	// }
+	// System.out.print("Reading file " + s);
+	// }
 
 }
