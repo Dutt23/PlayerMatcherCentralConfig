@@ -1,12 +1,21 @@
 package com.stackroute.maverick.domain;
 
-
-
-
 public class User {
-	
-public User()
-{
+
+	private String name;
+
+	public String getName() {
+
+		return "Name";
 	}
+
+	public User(String name) {
+		super();
+		this.name = name;
+
+	}
+
+	public User() {
+	}
+
 }
-	
