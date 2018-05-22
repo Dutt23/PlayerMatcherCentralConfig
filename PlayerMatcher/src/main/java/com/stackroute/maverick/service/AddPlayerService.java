@@ -5,6 +5,6 @@ import java.util.Set;
 
 public interface AddPlayerService {
 	
-	public Map<Integer, Set<Integer>>  addPlayertoQueue(int gameId , int uderId);
+	public void addPlayertoQueue(int gameId , int uderId) throws InterruptedException;
 
 }

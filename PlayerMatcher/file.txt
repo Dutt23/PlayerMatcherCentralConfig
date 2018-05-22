@@ -1,2 +1,5 @@
-{mylist=[a, b, c]}{mylist=[a, b, c]}{mylist=[a, b, c]}
-{1=[a, b, c]}
+92
+93
+93
+true
+true

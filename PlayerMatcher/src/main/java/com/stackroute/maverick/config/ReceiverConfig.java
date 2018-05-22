@@ -89,6 +89,26 @@ public class ReceiverConfig {
 	}
 	
 	
+	@Bean
+	public ConsumerFactory<String, Integer> consumerFactory1() {
+		return new DefaultKafkaConsumerFactory<>(consumerConfigs());
+	}
+
+	/**
+	 * The kafkaListenerContainerFactory is responsible to create the listener
+	 * container for a particular end point.
+	 * 
+	 * @return Kafka containers created by this condition.
+	 */
+	@Bean
+	public KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, Integer>> kafkaListenerContainerFactory1() {
+		ConcurrentKafkaListenerContainerFactory<String, Integer> factory = new ConcurrentKafkaListenerContainerFactory<>();
+		factory.setConsumerFactory(consumerFactory1());
+
+		return factory;
+	}
+	
+	
 	// Version 1.0
 	// @Bean
 	// public ConsumerFactory<String, String> consumerFactory1() {
