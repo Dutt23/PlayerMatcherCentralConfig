@@ -63,8 +63,6 @@ public class PlayerMatcherController {
 		Map<Integer, Set<Integer>> gameQueue;
 		// This is where the gameId will be stored
 		addPlayerService.addPlayertoQueue(gameId, userId);
-		// System.out.println("This is controller" + gameQueue);
-		int i = 0;
 
 		// for (int key : gameQueue.keySet()) {
 		//

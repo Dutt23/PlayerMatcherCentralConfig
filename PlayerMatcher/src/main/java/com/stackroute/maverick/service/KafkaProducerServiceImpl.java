@@ -30,5 +30,6 @@ public class KafkaProducerServiceImpl {
 		LOGGER.info("sending payload='{}' to topic='{}'", payload, topic);
 		kafkaTemplateFastestFinger.send(topic, payload);
 	}
+	
 
 }

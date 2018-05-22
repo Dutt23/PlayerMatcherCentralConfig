@@ -126,6 +126,7 @@ public class AddPlayerServiceImpl implements AddPlayerService {
 		 */
 		public void run() {
 			System.out.println("Time's up! List sent");
+			
 			gameQueue.remove(gameId);
 			playerSet.clear();
 			timer.cancel(); // Terminate the timer thread
