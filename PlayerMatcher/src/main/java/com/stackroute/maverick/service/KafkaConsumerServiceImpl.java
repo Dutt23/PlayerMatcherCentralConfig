@@ -37,11 +37,11 @@ public class KafkaConsumerServiceImpl {
 	 * @throws InterruptedException 
 	 * 
 	 */
-	@KafkaListener(topics = "gameEnginemultiplayer.t")
-	public void kafkaConnsumerFastestFinger(User payload) {
-		LOGGER.info("received payload='{}'", payload.toString());
-		latch.countDown();
-	}
+		@KafkaListener(topics = "gameEnginemultiplayer.t")
+		public void kafkaConnsumerFastestFinger(User payload) {
+			LOGGER.info("received payload='{}'", payload.toString());
+			latch.countDown();
+		}
 	
 //	@KafkaListener(topics = "id.t")
 //	public void kafkaConnsumerFastestFinger1(int id) throws InterruptedException {
