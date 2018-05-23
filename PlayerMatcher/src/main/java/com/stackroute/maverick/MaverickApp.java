@@ -12,6 +12,7 @@ public class MaverickApp {
 	}
 
 	public static void greetings() {
+		
 		System.out.println("Hi welcome to the maverick application");
 	}
 	
