@@ -16,7 +16,7 @@ import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.test.rule.KafkaEmbedded;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
-
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.stackroute.maverick.domain.User;
@@ -31,7 +31,7 @@ import com.stackroute.maverick.service.KafkaProducerServiceImpl;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-
+@DirtiesContext
 public class KafkaUnitTest {
 
 	/**
@@ -84,6 +84,7 @@ public class KafkaUnitTest {
 			ContainerTestUtils.waitForAssignment(messageListenerContainer,
 
 					embeddedKafka.getPartitionsPerTopic());
+			
 		}
 	}
 
@@ -93,7 +94,7 @@ public class KafkaUnitTest {
 		user.getName();
 		kafkaProducerService.sendFastestFingerPlayerList("gameEnginemultiplayer.t", user);
 		kafkaConsumerService.getLatch().await(10000, TimeUnit.MILLISECONDS);
-		assertEquals(kafkaConsumerService.getLatch().getCount(), 0);
+	        assertEquals(kafkaConsumerService.getLatch().getCount(), 0);
 
 	}
 
